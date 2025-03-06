@@ -108,8 +108,8 @@ function Navbar() {
         </nav>
 
         <nav className="nav-menu-2">
-          <a className="contact-item">Contact Us</a>
-          <a className="contact-item">Login</a>
+          <HashLink className="contact-item" to={"/login#"}>login</HashLink>
+          <HashLink className="contact-item" to={"/sign-up#"}>sign up</HashLink>
         </nav>
 
         <button className="nav-toggle" onClick={toggleDropdown}>
