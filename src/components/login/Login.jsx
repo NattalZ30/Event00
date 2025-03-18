@@ -10,27 +10,22 @@ function Login({
 }){
     const [error,setError] = useState("");
     const [loading, setLoading] = useState(false)
+    const [loginSuccessMessage, setLoginSuccessMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("")
         setLoading(true);
 
-        // try {
-        //     const response = await findUser(username, password);
-        
-        //     if (response) {
-        //         onStart();
-        //     } else {
-        //         setError("User not found. Please check your username and password.");
-        //         setUsername("");
-        //         setPassword("");
-        //     }
-        // } catch (err) {
-        // setError("An error occurred. Please try again.");
-        // } finally {
-        // setLoading(false);
-        // }
+        const response = await fetch("http://localhost:5000/api/findUser", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+      
+          const data = await response.json();
+          data.success? setLoginSuccessMessage(data.message):setError(data.message)
+          setLoading(false)
     }
 
     return (
@@ -60,6 +55,7 @@ function Login({
                 </button>
             </form>
             {error && <p className="error-message">{error}</p>}
+            {loginSuccessMessage && <p className="success-message">{loginSuccessMessage}</p>}
             {loading && <p className="loading-text">Loading...</p>}
             <p className="create-account-text">Don't have an account?</p>
             <HashLink to={"/sign-up#"} smooth><button className="account-button">Create Account Here</button></HashLink>

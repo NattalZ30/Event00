@@ -1,6 +1,6 @@
 import { HashLink } from "react-router-hash-link"
 import React, {useState} from "react"
-import {findUser, createUser} from "../../../mongoDB/conn"
+//import {findUser, createUser} from "../../../mongoDB/conn"
 
 function Signup({
     username, 
@@ -20,19 +20,18 @@ function Signup({
         setError("")
         setSignInSuccessMessage("")
 
-        // try{
-        //     const response = await findUser(username);  
-        //     if (!response) {
-        //         const create = await createUser(username, email, password);
-        //         setSignInSuccessMessage("Sign Up Complete")
-        //     } else {
-        //         setError("Username already exists. Please change your username.");
-        //     }
-        // } catch(err){
-        //     setError("An error occurred. Please try again.");
-        // } finally {
-        //     setLoading(false);
-        // }
+        const response = await fetch("http://localhost:5000/api/createUser", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password }),
+          });
+      
+          const data = await response.json();
+          if (data.success) {
+            setMessage("User created successfully!");
+          } else {
+            setMessage("Error creating user. Try again.");
+          }
     }
 
     return (
