@@ -1,6 +1,6 @@
-# Nattal&Company
+# 0V0NT__
 
-This website is my first portfolio page.
+Hosting an event and looking to sell tickets? Looking to join an event?
 
-I will turn this portfolio page into a page for my company, where I will showcase my all my subsidiaries
+Made easy with 0V0NT__
 

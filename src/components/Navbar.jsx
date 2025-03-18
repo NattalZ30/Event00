@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 
-function Navbar() {
+function Navbar({username, isLoggedIn}) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
@@ -15,102 +15,35 @@ function Navbar() {
       <div className="nav-bar">
         <p className="title-box">
           <HashLink className="title" to={"/#"} smooth>
-            Nattal&Co
+            UNTITLED
           </HashLink>
         </p>
 
         <nav className={`nav-menu-1 ${dropdownVisible ? "show-dropdown" : ""}`}>
-          <div className="about-us-item">
-            <HashLink to={"/about-us#"} smooth>About Us</HashLink>
-            <div className={`dropbox ${dropdownVisible ? "show-dropdown" : ""}`}>
-              <div>
-                Origin 
-                <ul className="about-box-content">
-                  <li>
-                    <HashLink to={"/about-us#Who-We-Are"} smooth>
-                      Who We Are
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to={"/about-us#What-We-Do"} smooth>
-                    What We Do
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to={"/about-us#Our-Story"} smooth>
-                      Our Story
-                    </HashLink>
-                  </li>
-                </ul>
-              </div>
-              <div className="vert-line"></div>
-              <div>
-                Ethos
-                <ul className="about-box-content">
-                  <li>
-                    <HashLink to={"/about-us"}>
-                      Our Mission
-                    </HashLink>
-                  </li>
-                  <li>
-                    <Link className="values-dropbox" to={"/ethos"}>
-                      Values
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="vert-line"></div>
-              <div>
-                Impact
-                <ul className="about-box-content">
-                  <li>
-                    <Link className="our-mission-dropbox" to={"/our-story"}>
-                      So Far 
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="ethos-dropbox" to={"/ethos"}>
-                      Projects
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="vert-line"></div>
-              <div>
-                Support
-                <ul className="about-box-content">
-                  <li>
-                    <Link className="our-mission-dropbox" to={"/our-story"}>
-                      Outreach 
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="ethos-dropbox" to={"/ethos"}>
-                      Roles
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
           <div className="insights-item">
-          <Link to={"/insights"}>Insights</Link>
-            <div className={`dropbox ${dropdownVisible ? "show-dropdown" : ""}`}></div>
+          <HashLink to={"/find-my-tickets#"}>Find My Tickets</HashLink>
           </div>
 
           <div className="foundation-item">
-            <Link className="foundation-nav-bar" to={"/foundation"}>
-              Foundation
-            </Link>
-            <div className="dropbox"></div>
+            <HashLink className="foundation-nav-bar" to={isLoggedIn? "/create-event#":"/login#"}>
+              Create Event
+            </HashLink>
+          </div>
+
+          <div className="login-item-1">
+            {dropdownVisible ? <HashLink to={"/login#"}>Login</HashLink>: null}
+          </div>
+          <div className="sign-up-item-1">
+            {dropdownVisible ? <HashLink to={"/sign-up#"}>Sign up</HashLink>: null}
           </div>
         </nav>
 
-        <nav className="nav-menu-2">
-          <HashLink className="contact-item" to={"/login#"}>login</HashLink>
-          <HashLink className="contact-item" to={"/sign-up#"}>sign up</HashLink>
-        </nav>
+        {isLoggedIn ? username :<nav className="nav-menu-2">
+          Staff:
+          <HashLink className="login-item" to={"/login#"}>Login</HashLink>
+          <HashLink className="sign-up-item" to={"/sign-up#"}>Sign up</HashLink>
+        </nav>}
 
         <button className="nav-toggle" onClick={toggleDropdown}>
           {dropdownVisible ? <FaTimes /> : <FaBars />}

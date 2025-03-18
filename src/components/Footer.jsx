@@ -1,4 +1,3 @@
-import Logo from "../assets/thumbnail.jpeg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareFacebook, faXTwitter, faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -6,7 +5,7 @@ function Footer(){
     return (
         <footer className="footer">
             <div className="footer-content">
-               <img className="footer-logo" src={Logo}></img>
+               <h4 className="logo-footer">UNTITLED</h4>
                <div className="services-footer">
                     <h4 className="footer-section-heading">SERVICES</h4>
                 </div>
@@ -15,10 +14,10 @@ function Footer(){
                </div>
                <div className="connect-footer">
                     <h4 className="footer-section-heading">CONNECT</h4>
-                    <a href="https://www.facebook.com/" ><FontAwesomeIcon icon={faSquareFacebook} style={styles.icon} /></a>
-                    <a href="https://x.com/?lang=en&mx=2" ><FontAwesomeIcon icon={faXTwitter} style={styles.icon} /></a>
-                    <a href="https://www.linkedin.com/" ><FontAwesomeIcon icon={faLinkedin} style={styles.icon} /></a>
-                    <a href="https://www.instagram.com/" ><FontAwesomeIcon icon={faInstagram} style={styles.icon} /></a>
+                    <a id="fcbk1" href="https://www.facebook.com/" ><FontAwesomeIcon icon={faSquareFacebook} style={styles.icon} /></a>
+                    <a id="x1" href="https://x.com/?lang=en&mx=2" ><FontAwesomeIcon icon={faXTwitter} style={styles.icon} /></a>
+                    <a id="lnkn1" href="https://www.linkedin.com/" ><FontAwesomeIcon icon={faLinkedin} style={styles.icon} /></a>
+                    <a id="insg1" href="https://www.instagram.com/" ><FontAwesomeIcon icon={faInstagram} style={styles.icon} /></a>
                 </div>
             </div>
             <div className="copyrights">

@@ -1,4 +1,4 @@
-function Insights(){
+function CreateEvent(){
     return (
         <div className="insights-page">
             <div className="widget"></div>
@@ -6,4 +6,4 @@ function Insights(){
     )
 }
 
-export default Insights
+export default CreateEvent
