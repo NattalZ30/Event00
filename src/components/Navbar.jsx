@@ -31,12 +31,12 @@ function Navbar({username, isLoggedIn}) {
             </HashLink>
           </div>
 
-          <div className="login-item-1">
+          {isLoggedIn ? <div className="foundation-item"><HashLink to={"/my-account"}>My Account</HashLink></div>:<><div className="login-item-1">
             {dropdownVisible ? <HashLink to={"/login#"}>Login</HashLink>: null}
           </div>
           <div className="sign-up-item-1">
             {dropdownVisible ? <HashLink to={"/sign-up#"}>Sign up</HashLink>: null}
-          </div>
+          </div></>}
         </nav>
 
         {isLoggedIn ? username :<nav className="nav-menu-2">

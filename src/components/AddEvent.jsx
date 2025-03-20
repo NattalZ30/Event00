@@ -1,36 +1,27 @@
 import { HashLink } from "react-router-hash-link"
 import React, {useState} from "react"
 //import {findUser} from "../../../mongoDB/conn"
-function Login({
-    username, 
-    setUsername,
-    password,
-    setPassword,
-    isLoggedIn,
-    setIsLoggedIn,
-}){
+function AddEvent({event}){
     const [error,setError] = useState("");
     const [loading, setLoading] = useState(false)
-    const [loginSuccessMessage, setLoginSuccessMessage] = useState("");
+    const [fullName, setFullName] = useState("")
+    const [email, setEmail] = useState("")
+    const [successMessage, setSuccessMessage] = useState("");
 
-    const loginSuccess = (data) => {
-        setIsLoggedIn(true)
-        setLoginSuccessMessage(data.message)
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("")
         setLoading(true);
 
-        const response = await fetch("http://localhost:5000/api/findUser", {
+        const response = await fetch("http://localhost:5000/api/addTicket", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ fullName, email, event }),
           });
       
           const data = await response.json();
-          data.success? loginSuccess(data):setError(data.message)
+          data.success? setSuccessMessage("You have been added to event"):setError(data.message)
           setLoading(false)
     }
 
@@ -43,17 +34,17 @@ function Login({
                 <input
                     className="login-input"
                     type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e)=> setUsername(e.target.value)}
+                    placeholder="full name"
+                    value={fullName}
+                    onChange={(e)=> setFullName(e.target.value)}
                     required
                 />
                 <input
                     className="login-input"
-                    type="password"
-                    placeholder="Password" 
-                    value={password}
-                    onChange={(e)=> setPassword(e.target.value)}
+                    type="email"
+                    placeholder="email" 
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
                     required
                 />
                 <button type="submit" disabled={loading}>
@@ -61,13 +52,11 @@ function Login({
                 </button>
             </form>
             {error && <p className="error-message">{error}</p>}
-            {loginSuccessMessage && <p className="success-message">{loginSuccessMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
             {loading && <p className="loading-text">Loading...</p>}
-            <p className="create-account-text">Don't have an account?</p>
-            <HashLink to={"/sign-up#"} smooth><button className="account-button">Create Account Here</button></HashLink>
             </div>
         </div>
     )
 }
 
-export default Login
+export default AddEvent

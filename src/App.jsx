@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, useSearchParams } from 'react-router-dom'
 import './App.css'
 import { useState } from 'react'
 
@@ -8,10 +8,12 @@ import Signup from './components/login/Signup'
 import Navbar from './components/Navbar'
 
 import Home from './components/Home'
+import Event from './components/Event'
 import CreateEvent from './components/CreateEvent'
 import FindMyTickets from './components/FindMyTickets'
 
 import Footer from './components/Footer'
+import MyAccount from './components/MyAccount'
 
 function App() {
   const [username, setUsername] = useState("")
@@ -21,6 +23,8 @@ function App() {
   const location = useLocation();
   const hideNavbarRoutes = ['/login', '/sign-up', '/find-my-tickets'];
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const handleLogin = () => {
     setIsLoggedIn(true)
   }
@@ -29,9 +33,11 @@ function App() {
     <div className='app'>
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar username={username} isLoggedIn={isLoggedIn} />}
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Home searchParams={searchParams} setSearchParams={setSearchParams}/>}/>
+        <Route path="/event/:event_id" element={<Event username={username}/>}/>
         <Route path='/find-my-tickets' element={<FindMyTickets/>}/>
-        <Route path='/create-event' element={<CreateEvent/>}/>
+        <Route path='/create-event' element={<CreateEvent username={username}/>}/>
+        <Route path='/my-account' element={<MyAccount username={username} isLoggedIn={isLoggedIn}/>}/>
         <Route path='/login' element={<Login
         onStart={handleLogin} 
         username={username} 

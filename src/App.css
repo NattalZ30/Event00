@@ -255,6 +255,33 @@ a {
 .bar-home{
   height: 50px;
 }
+.event-heading{
+  margin-left: 40px;
+}
+
+.event-page{
+  background-color: rgb(233, 213, 222);
+  color:black;
+  padding-bottom: 10px;
+  justify-items: center;
+}
+.event-content{
+  width: 65vw;
+  justify-items: center;
+  padding: 10px;
+  border: solid;
+  height: fit-content;
+}
+.item-card{
+  border: solid;
+  width: fit-content;
+  background-color: white;
+  padding: 5px;
+  box-shadow:rgba(0, 0, 0, 0.1);
+  p{
+    color: #000;
+  }
+}
 
 .widget {
   background-color: rgb(233, 213, 222);
@@ -364,8 +391,7 @@ a {
   }
 
   .nav-menu-1, 
-  .login-item,
-  .sign-up-item {
+  .nav-menu-2 {
     display: none;
   }
 

@@ -47,7 +47,7 @@ function Signup({
                 />
                 <input
                     className="login-input"
-                    type="text"
+                    type="email"
                     placeholder="email"
                 />
                 <input
