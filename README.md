@@ -1,6 +1,5 @@
 # EVENTI0
 
----
 
 Hosting an event and looking to sell tickets? Looking to join an event?
 
