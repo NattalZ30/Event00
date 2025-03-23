@@ -43,6 +43,7 @@ const GoogleCalendar = () => {
       gapi.client.init({
         apiKey: API_KEY,
         clientId: CLIENT_ID,
+        ux_mode: "popup",
         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
         scope: SCOPES,
       }).then(() => {
