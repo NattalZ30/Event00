@@ -7,9 +7,9 @@ Made easy with EVENTI0
 
 # Check it out
 
-Here is a link to hosted version of the website:
+Here is a link to hosted version of the website: https://timely-syrniki-5cfacf.netlify.app/
 
-Instructions to local hosting are below. Otherwise, please refer to the (# Test) section to test site. 
+Instructions to local hosting are below. Otherwise, please refer to the (#Test) section to test site. 
 
 # How-To
 
@@ -17,7 +17,7 @@ Setup: if you are cloning this repo, make sure you have Node.js install {v22.13.
 
 One: change directory to Event00\mongoDB and run `node server.js`. This will connect you to the database. 
 
-Two: make sure to have all dependencies installed by running `npm install`. This will host the app locally.
+Two: make sure to have all dependencies installed by running `npm install`. You can now run `npm run dev` to host the app locally. 
 
 # Test 
 
