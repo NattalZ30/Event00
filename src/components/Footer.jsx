@@ -5,7 +5,7 @@ function Footer(){
     return (
         <footer className="footer">
             <div className="footer-content">
-               <h4 className="logo-footer">UNTITLED</h4>
+               <h4 className="logo-footer">EVENTIO</h4>
                <div className="services-footer">
                     <h4 className="footer-section-heading">SERVICES</h4>
                 </div>
@@ -21,7 +21,7 @@ function Footer(){
                 </div>
             </div>
             <div className="copyrights">
-                © 2025 Nattal&CO. All rights reserved. 
+                © 2025 EVENTIO. All rights reserved. 
             </div>
         </footer>
     )

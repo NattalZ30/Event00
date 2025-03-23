@@ -6,8 +6,7 @@ function Event({username}) {
   const [event, setEvent] = useState(null);
   const [toAdd, setToAdd] = useState(false)
   const [message, setMessage] = useState("");
-
-  console.log(event_id)
+  const [eventFound, setEventFound] = useState(true)
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -17,11 +16,13 @@ function Event({username}) {
         if (data.success) {
           setEvent(data.event);
         } else {
-          setMessage("Event not found.");
+          setMessage("Event not found");
+          setEventFound(false)
         }
       } catch (error) {
         console.error("Error fetching event:", error);
         setMessage("Error loading event details.");
+        setEventFound(false)
       }
     };
 
@@ -53,7 +54,18 @@ function Event({username}) {
     }
   };
 
-  if (message) return <p>{message}</p>;
+  
+  if (!eventFound){
+    return(
+      <>
+      <div className="bar-home"></div>
+      <div className="widget">
+        <h1>404: {message} :(</h1>
+      </div>
+      </>
+    )
+  }
+  
   if (!event) return <p>Loading event details...</p>;
 
   if (toAdd){
@@ -63,18 +75,21 @@ function Event({username}) {
   }
   return (
     <div className="event-page">
-        <div className="bar-home"></div>
-        <div className="event-content">
+      <div className="bar-home"></div>
+      <div className="event-content">
         <h1>{event.title}</h1>
-        <p><strong>Date:</strong> {event.date}</p>
-        <p><strong>Time:</strong> {event.time}</p>
+        <p><strong>Start:</strong> {event.start.replace("T","     ")}</p>
+        <p><strong>End:</strong> {event.end.replace("T"," ")}</p>
         <p><strong>Location:</strong> {event.location}</p>
         <p><strong>Description:</strong> {event.description}</p>
         <div className="add-delete-buttons">
-            <button onClick={handleAdd}>Add</button>
-            {username==event.posted_by? <button onClick={handleDelete}>Delete</button>: null}
+            <button className="sign-up-event-button" onClick={handleAdd}>Sign Up to event</button>
+            {username==event.posted_by? <button className="delete-button" onClick={handleDelete}>Delete</button>: null}
         </div>
+        <div>
+          
         </div>
+      </div>
         
     </div>
   );

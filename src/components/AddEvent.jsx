@@ -21,7 +21,7 @@ function AddEvent({event}){
           });
       
           const data = await response.json();
-          data.success? setSuccessMessage("You have been added to event"):setError(data.message)
+          data.success? setSuccessMessage("You have successfully signed up to event"):setError(data.message)
           setLoading(false)
     }
 
@@ -29,7 +29,7 @@ function AddEvent({event}){
         <div className="login-page" onSubmit={handleSubmit}>
             <HashLink to={"/#"} smooth>Back to main page</HashLink>
             <div className="widget">
-            <h1>Sign In to Account</h1>
+            <h1>Sign Up to Event</h1>
             <form className="login-form">
                 <input
                     className="login-input"
@@ -48,8 +48,11 @@ function AddEvent({event}){
                     required
                 />
                 <button type="submit" disabled={loading}>
-                    Login
+                    Sign Up to Event
                 </button>
+                <HashLink to={`/event/${event.event_id}/add-to-calender`}><button className="add-calender">
+                    Add to Calender
+                </button></HashLink>
             </form>
             {error && <p className="error-message">{error}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}

@@ -30,30 +30,6 @@ function FindMyTickets(){
             setLoading(false);
         }
     }
-    // useEffect(() => {
-    //     const fetchEvents = async () => {
-    //       try {
-    //         const response = await fetch("http://localhost:5000/api/findEventsByEmail", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify({ userEmail }),
-    //           });
-    //         const data = await response.json();
-    
-    //         if (data.success) {
-    //           setEvents(data.events);
-    //           setUserFound(true)
-    //         } else {
-    //           setMessage(data.message);
-    //         }
-    //       } catch (error) {
-    //         console.error("Error fetching events:", error);
-    //         setMessage("Error loading events.");
-    //       }
-    //     };
-    
-    //     fetchEvents();
-    //   }, []);
 
     if (userFound){
         return(

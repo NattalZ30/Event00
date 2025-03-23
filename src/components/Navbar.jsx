@@ -13,11 +13,11 @@ function Navbar({username, isLoggedIn}) {
   return (
     <div className="nav-box">
       <div className="nav-bar">
-        <p className="title-box">
+        <h3 className="title-box">
           <HashLink className="title" to={"/#"} smooth>
-            UNTITLED
+            EVENTIO
           </HashLink>
-        </p>
+        </h3>
 
         <nav className={`nav-menu-1 ${dropdownVisible ? "show-dropdown" : ""}`}>
 
@@ -40,7 +40,7 @@ function Navbar({username, isLoggedIn}) {
         </nav>
 
         {isLoggedIn ? username :<nav className="nav-menu-2">
-          Staff:
+          <div className="staff-login"><h4>Staff?</h4></div>
           <HashLink className="login-item" to={"/login#"}>Login</HashLink>
           <HashLink className="sign-up-item" to={"/sign-up#"}>Sign up</HashLink>
         </nav>}

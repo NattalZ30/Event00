@@ -4,8 +4,7 @@ function ItemCard({event}){
         <div className="item-card">
             <HashLink to={`/event/${event.event_id}#`}>
             <h1>{event.title}</h1>
-            <p>{event.date}</p>
-            <p>{event.time}</p>
+            <p>{event.start.replace("T"," ")}</p>
             </HashLink>
         </div>
     )

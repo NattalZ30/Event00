@@ -15,6 +15,8 @@ import FindMyTickets from './components/FindMyTickets'
 import Footer from './components/Footer'
 import MyAccount from './components/MyAccount'
 
+import GoogleCalendar from './components/GoogleCalender'
+
 function App() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -22,8 +24,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const location = useLocation();
   const hideNavbarRoutes = ['/login', '/sign-up', '/find-my-tickets'];
-
-  const [searchParams, setSearchParams] = useSearchParams()
 
   const handleLogin = () => {
     setIsLoggedIn(true)
@@ -33,8 +33,9 @@ function App() {
     <div className='app'>
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar username={username} isLoggedIn={isLoggedIn} />}
       <Routes>
-        <Route path='/' element={<Home searchParams={searchParams} setSearchParams={setSearchParams}/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route path="/event/:event_id" element={<Event username={username}/>}/>
+        <Route path="/event/:event_id/add-to-calender" element={<GoogleCalendar/>}/>
         <Route path='/find-my-tickets' element={<FindMyTickets/>}/>
         <Route path='/create-event' element={<CreateEvent username={username}/>}/>
         <Route path='/my-account' element={<MyAccount username={username} isLoggedIn={isLoggedIn}/>}/>
@@ -44,16 +45,9 @@ function App() {
         setUsername={setUsername}
         password={password} 
         setPassword={setPassword}
-        isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         />}/>
-        <Route path='/sign-up' element={<Signup
-        username={username} 
-        setUsername={setUsername}
-        email={email} 
-        setEmail={setEmail} 
-        password={password} 
-        setPassword={setPassword}/>}/>
+        <Route path='/sign-up' element={<Signup/>}/>
       </Routes>
       <Footer></Footer>
     </div>

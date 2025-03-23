@@ -9,8 +9,8 @@ function CreateEvent({
     const [successMessage, setSuccessMessage] = useState("");
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
-    const [date, setDate] = useState()
-    const [time, setTime] = useState()
+    const [start, setStart] = useState()
+    const [end, setEnd] = useState()
     const [location, setLocation] = useState()
 
     const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ function CreateEvent({
         const response = await fetch("http://localhost:5000/api/createEvent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title, description, date, time, location, posted_by: username }),
+            body: JSON.stringify({ title, description, start:start+":00", end:end+":00", location, posted_by: username }),
         });
     
         const data = await response.json();
@@ -50,20 +50,24 @@ function CreateEvent({
                     onChange={(e)=> setDescription(e.target.value)}
                     required
                 />
+                Start
                 <input
                     className="login-input"
-                    type="date"
-                    placeholder="date" 
-                    value={date}
-                    onChange={(e)=> setDate(e.target.value)}
+                    type="datetime-local"
+                    placeholder="start" 
+                    value={start}
+                    onChange={(e)=> setStart(e.target.value)}
+                    max={end}
                     required
                 />
+                End
                 <input
                     className="login-input"
-                    type="time"
-                    placeholder="time" 
-                    value={time}
-                    onChange={(e)=> setTime(e.target.value)}
+                    type="datetime-local"
+                    placeholder="end" 
+                    value={end}
+                    min={start}
+                    onChange={(e)=> setEnd(e.target.value)}
                     required
                 />
                 <input

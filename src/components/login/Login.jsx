@@ -6,7 +6,6 @@ function Login({
     setUsername,
     password,
     setPassword,
-    isLoggedIn,
     setIsLoggedIn,
 }){
     const [error,setError] = useState("");

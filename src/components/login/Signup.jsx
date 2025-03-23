@@ -2,14 +2,10 @@ import { HashLink } from "react-router-hash-link"
 import React, {useState} from "react"
 //import {findUser, createUser} from "../../../mongoDB/conn"
 
-function Signup({
-    username, 
-    setUsername,
-    email,
-    setEmail,
-    password,
-    setPassword,
-}){
+function Signup(){
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [signInSuccessMessage, setSignInSuccessMessage] = useState("");
     const [error, setError] = useState("");
@@ -28,9 +24,9 @@ function Signup({
       
           const data = await response.json();
           if (data.success) {
-            setMessage("User created successfully!");
+            setSignInSuccessMessage("User created successfully!");
           } else {
-            setMessage("Error creating user. Try again.");
+            setSignInSuccessMessage("Error creating user. Try again.");
           }
     }
 
@@ -44,16 +40,22 @@ function Signup({
                     className="login-input"
                     type="text"
                     placeholder="Username"
+                    value={username}
+                    onChange={(e)=> setUsername(e.target.value)}
                 />
                 <input
                     className="login-input"
                     type="email"
                     placeholder="email"
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
                 />
                 <input
                     className="login-input"
                     type="password"
-                    placeholder="Password" 
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e)=> setPassword(e.target.value)} 
                 />
                 <button type="submit" disabled={loading}>
                     Sign up

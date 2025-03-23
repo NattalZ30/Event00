@@ -28,10 +28,12 @@ app.post("/api/findUser", async (req, res) => {
     await connectDB();
     const { username, password } = req.body;
     const usersCollection = client.db("users_test").collection("users");
-    const user = await usersCollection.findOne({ username, password });
+    let query = { username }
+    if (password) query.password = password
+    const user = await usersCollection.findOne(query);
 
     if (user) {
-      return res.json({ success: true, message: "User found" });
+      return res.json({ success: true, message: "User found", details: user });
     } else {
       return res.json({ success: false, message: "No matching user found" });
     }
@@ -40,6 +42,7 @@ app.post("/api/findUser", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 app.post("/api/createUser", async (req, res) => {
   try {
@@ -92,6 +95,23 @@ app.get("/api/findEvents", async (req, res) => {
   }
 });
 
+app.post("/api/findEvent", async (req, res) => {
+  try {
+    await connectDB();
+    const { event_id } = req.body;
+    const detailsCollection = client.db("events").collection("details");
+    const event = await detailsCollection.findOne({event_id});
+
+    if (event) {
+      return res.json({ success: true, message: "User found", details: event });
+    } else {
+      return res.json({ success: false, message: "No matching user found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.post("/api/findEventsByUser", async (req, res) => {
   try {
@@ -100,7 +120,7 @@ app.post("/api/findEventsByUser", async (req, res) => {
     const eventsCollection = client.db("events").collection("details");
 
     // Fetch all events for the given username
-    const events = await eventsCollection.find({ username }).toArray();
+    const events = await eventsCollection.find({ posted_by:username }).toArray();
 
     if (events.length > 0) {
       return res.json({ success: true, events });
@@ -117,15 +137,15 @@ app.post("/api/findEventsByUser", async (req, res) => {
 app.post("/api/createEvent", async (req, res) => {
   try {
     await connectDB();
-    const { title, description, date, time, location, posted_by } = req.body; 
+    const { title, description, start, end, location, posted_by } = req.body; 
 
     // Validate required fields
-    if (!title || !description || !date || !time) {
+    if (!title || !description || !start || !end) {
       return res.status(400).json({ success: false, message: "All fields are required" });
     }
     const event_id = Date.now().toString();
     const eventsCollection = client.db("events").collection("details");
-    const newEvent = await eventsCollection.insertOne({ event_id, title, description, date, time, location, posted_by });
+    const newEvent = await eventsCollection.insertOne({ event_id, title, description, start, end, location, posted_by });
 
     return res.json({ success: true, eventId: newEvent.insertedId });
   } catch (error) {
