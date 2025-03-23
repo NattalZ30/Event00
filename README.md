@@ -9,6 +9,8 @@ Made easy with EVENTI0
 
 Here is a link to hosted version of the website: https://timely-syrniki-5cfacf.netlify.app/
 
+Watch a test video here! https://youtu.be/zfbc1DSRGfU
+
 Instructions to local hosting are below. Otherwise, please refer to the (#Test) section to test site. 
 
 # How-To
